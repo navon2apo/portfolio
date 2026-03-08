@@ -3,15 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navon Amos — AI Engineer Portfolio</title>
+    <title>Navon Amos — AI Engineer & Show Director Portfolio</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap');
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
             --bg-primary: #050505;
@@ -19,7 +15,6 @@
             --bg-card: #1a1a1a;
             --accent-cyan: #00ffff;
             --accent-magenta: #ff00ff;
-            --accent-yellow: #ffff00;
             --text-primary: #ffffff;
             --text-secondary: #a0a0a0;
             --glow-cyan: rgba(0, 255, 255, 0.5);
@@ -34,18 +29,12 @@
             overflow-x: hidden;
         }
         
-        /* Animated Grid Background */
         .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
                 linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 0;
+            background-size: 50px 50px; z-index: 0;
             animation: gridMove 20s linear infinite;
         }
         
@@ -54,31 +43,19 @@
             100% { transform: translate(50px, 50px); }
         }
         
-        /* Glowing Orbs */
         .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            z-index: 0;
-            animation: float 15s ease-in-out infinite;
+            position: fixed; border-radius: 50%; filter: blur(80px);
+            opacity: 0.3; z-index: 0; animation: float 15s ease-in-out infinite;
         }
         
         .orb-1 {
-            top: 10%;
-            left: 20%;
-            width: 300px;
-            height: 300px;
+            top: 10%; left: 20%; width: 300px; height: 300px;
             background: var(--glow-cyan);
         }
         
         .orb-2 {
-            bottom: 20%;
-            right: 15%;
-            width: 400px;
-            height: 400px;
-            background: var(--glow-magenta);
-            animation-delay: -5s;
+            bottom: 20%; right: 15%; width: 400px; height: 400px;
+            background: var(--glow-magenta); animation-delay: -5s;
         }
         
         @keyframes float {
@@ -87,35 +64,19 @@
             66% { transform: translate(-30px, 30px) scale(0.9); }
         }
         
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+        .container { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 2rem; }
         
-        /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 4rem 0;
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 4rem 0;
         }
         
         .hero h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 10vw, 8rem);
-            font-weight: 900;
+            font-size: clamp(3rem, 10vw, 8rem); font-weight: 900;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 60px var(--glow-cyan);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; margin-bottom: 1rem;
             animation: glitch 3s infinite;
         }
         
@@ -127,60 +88,45 @@
         }
         
         .hero .tagline {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 300;
-            letter-spacing: 0.1em;
+            font-size: 1.5rem; color: var(--text-secondary);
+            margin-bottom: 0.5rem; font-weight: 300; letter-spacing: 0.1em;
+        }
+        
+        .hero .highlight {
+            font-size: 1.1rem; margin-top: 1.5rem;
+            color: var(--accent-cyan); font-weight: 400; line-height: 1.8;
         }
         
         .hero .cta {
-            font-size: 1.2rem;
-            color: var(--accent-cyan);
-            padding: 1rem 2rem;
-            border: 2px solid var(--accent-cyan);
-            background: transparent;
-            cursor: pointer;
+            font-size: 1.2rem; color: var(--accent-cyan);
+            padding: 1rem 2rem; border: 2px solid var(--accent-cyan);
+            background: transparent; cursor: pointer;
             font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            text-transform: uppercase; letter-spacing: 0.15em;
+            transition: all 0.3s ease; text-decoration: none;
+            display: inline-block; margin-top: 2rem;
         }
         
         .hero .cta:hover {
-            background: var(--accent-cyan);
-            color: var(--bg-primary);
-            box-shadow: 0 0 30px var(--glow-cyan);
-            transform: translateY(-2px);
+            background: var(--accent-cyan); color: var(--bg-primary);
+            box-shadow: 0 0 30px var(--glow-cyan); transform: translateY(-2px);
         }
         
-        /* Stats Grid */
         .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem; margin: 4rem 0;
         }
         
         .stat {
-            background: var(--bg-card);
-            padding: 2rem;
+            background: var(--bg-card); padding: 2rem;
             border: 1px solid rgba(0, 255, 255, 0.2);
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            text-align: center; transition: all 0.3s ease;
+            position: relative; overflow: hidden;
         }
         
         .stat::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 2px;
             background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
             animation: scan 2s linear infinite;
         }
@@ -192,68 +138,42 @@
         
         .stat:hover {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 30px var(--glow-cyan);
-            transform: translateY(-5px);
+            box-shadow: 0 0 30px var(--glow-cyan); transform: translateY(-5px);
         }
         
         .stat-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 900;
+            font-family: 'Orbitron', sans-serif; font-size: 3rem; font-weight: 900;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-top: 0.5rem;
+            color: var(--text-secondary); font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;
         }
         
-        /* Projects Section */
-        .section {
-            margin: 8rem 0;
-        }
+        .section { margin: 8rem 0; }
         
         .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 4rem;
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
+            font-family: 'Orbitron', sans-serif; font-size: 3rem; font-weight: 700;
+            text-align: center; margin-bottom: 4rem; color: var(--accent-cyan);
+            text-transform: uppercase; letter-spacing: 0.15em;
         }
         
-        /* Project Card */
         .project {
-            background: var(--bg-card);
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            margin-bottom: 4rem;
-            padding: 3rem;
-            position: relative;
+            background: var(--bg-card); border: 1px solid rgba(0, 255, 255, 0.1);
+            margin-bottom: 4rem; padding: 3rem; position: relative;
             transition: all 0.4s ease;
         }
         
         .project::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0;
             background: linear-gradient(180deg, var(--accent-cyan), var(--accent-magenta));
             transition: height 0.4s ease;
         }
         
-        .project:hover::after {
-            height: 100%;
-        }
+        .project:hover::after { height: 100%; }
         
         .project:hover {
             border-color: var(--accent-cyan);
@@ -262,144 +182,103 @@
         }
         
         .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 2rem;
+            display: flex; justify-content: space-between;
+            align-items: flex-start; margin-bottom: 2rem;
         }
         
         .project-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif; font-size: 2rem;
+            font-weight: 700; color: var(--accent-cyan); margin-bottom: 0.5rem;
         }
         
         .project-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            font-weight: 300;
+            color: var(--text-secondary); font-size: 1.1rem; font-weight: 300;
         }
         
         .project-status {
-            background: var(--accent-magenta);
-            color: var(--bg-primary);
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            background: var(--accent-magenta); color: var(--bg-primary);
+            padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
             font-family: 'Orbitron', sans-serif;
         }
         
         .project-description {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            color: var(--text-secondary); margin-bottom: 2rem;
+            font-size: 1.1rem; line-height: 1.8;
         }
         
         .project-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem; margin-bottom: 2rem;
         }
         
         .feature {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
+            background: var(--bg-secondary); padding: 1.5rem;
             border-left: 3px solid var(--accent-cyan);
         }
         
         .feature-title {
-            color: var(--accent-cyan);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
+            color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;
+            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em;
         }
         
         .feature-text {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+            color: var(--text-secondary); font-size: 0.95rem;
         }
         
         .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 2rem;
+            display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem;
         }
         
         .tech-tag {
-            background: transparent;
-            border: 1px solid var(--accent-magenta);
-            color: var(--accent-magenta);
-            padding: 0.4rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            background: transparent; border: 1px solid var(--accent-magenta);
+            color: var(--accent-magenta); padding: 0.4rem 1rem;
+            font-size: 0.85rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em;
             transition: all 0.3s ease;
         }
         
         .tech-tag:hover {
-            background: var(--accent-magenta);
-            color: var(--bg-primary);
+            background: var(--accent-magenta); color: var(--bg-primary);
             box-shadow: 0 0 20px var(--glow-magenta);
         }
         
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 4rem 0;
-            border-top: 1px solid rgba(0, 255, 255, 0.2);
-            margin-top: 8rem;
+        .achievement-box {
+            text-align: center; padding: 2rem; background: var(--bg-card);
+            border: 1px solid rgba(0,255,255,0.2); margin-top: 3rem;
         }
         
-        .footer-text {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+        .achievement-box p {
+            color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;
         }
+        
+        .achievement-box strong { color: var(--accent-cyan); }
+        
+        .footer {
+            text-align: center; padding: 4rem 0;
+            border-top: 1px solid rgba(0, 255, 255, 0.2); margin-top: 8rem;
+        }
+        
+        .footer-text { color: var(--text-secondary); margin-bottom: 1rem; }
         
         .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;
         }
         
         .footer-link {
-            color: var(--accent-cyan);
-            text-decoration: none;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s ease;
+            color: var(--accent-cyan); text-decoration: none;
+            font-family: 'Orbitron', sans-serif; text-transform: uppercase;
+            letter-spacing: 0.1em; transition: all 0.3s ease;
         }
         
         .footer-link:hover {
-            color: var(--accent-magenta);
-            text-shadow: 0 0 20px var(--glow-magenta);
+            color: var(--accent-magenta); text-shadow: 0 0 20px var(--glow-magenta);
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .project-header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .project-features {
-                grid-template-columns: 1fr;
-            }
+            .hero h1 { font-size: 3rem; }
+            .project-header { flex-direction: column; gap: 1rem; }
+            .project-features { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -409,38 +288,97 @@
     <div class="orb orb-2"></div>
     
     <div class="container">
-        <!-- Hero -->
         <section class="hero">
             <h1>Navon Amos</h1>
             <p class="tagline">AI Engineer • Full-Stack Developer • System Architect</p>
-            <a href="#projects" class="cta">View Projects</a>
+            <p class="highlight">
+                Former Show Director (22 years) • Got Talent Israel Finalist<br>
+                Eurovision Performer • Global Productions • Hi-Tech Corporate Clients
+            </p>
+            <a href="#background" class="cta">View Portfolio</a>
         </section>
         
-        <!-- Stats -->
         <section class="stats">
+            <div class="stat">
+                <div class="stat-number">22</div>
+                <div class="stat-label">Years Show Director</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">🌍</div>
+                <div class="stat-label">Global Performances</div>
+            </div>
             <div class="stat">
                 <div class="stat-number">5+</div>
                 <div class="stat-label">Production Apps</div>
             </div>
             <div class="stat">
                 <div class="stat-number">30+</div>
-                <div class="stat-label">AI Features Built</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">6</div>
-                <div class="stat-label">Production Pipelines</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Production-Ready</div>
+                <div class="stat-label">AI Features</div>
             </div>
         </section>
         
-        <!-- Projects -->
-        <section id="projects" class="section">
-            <h2 class="section-title">Projects</h2>
+        <section id="background" class="section" style="margin: 4rem 0;">
+            <h2 class="section-title" style="font-size: 2rem;">Background</h2>
             
-            <!-- Project 1: Frame2Flow -->
+            <div class="project">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title" style="font-size: 1.5rem;">Show Director & Producer</h3>
+                        <p class="project-subtitle">22 Years Leading International Productions</p>
+                    </div>
+                </div>
+                
+                <p class="project-description">
+                    Led a successful entertainment production company for over two decades, directing shows worldwide, 
+                    managing artists and creative teams, and producing high-profile performances. Reached the finals 
+                    of Got Talent Israel, performed at Eurovision, and delivered productions for major hi-tech companies.
+                </p>
+                
+                <div class="project-features">
+                    <div class="feature">
+                        <div class="feature-title">🎭 Show Direction</div>
+                        <div class="feature-text">Directed and choreographed productions performed across the globe</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">🌍 Global Performances</div>
+                        <div class="feature-text">Eurovision, Got Talent Israel Finals, international tours and events</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">💼 Corporate Clients</div>
+                        <div class="feature-text">Hi-tech companies, events, and corporate entertainment productions</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">🎵 Creative Leadership</div>
+                        <div class="feature-text">Music direction, choreography creation, artist management, team building</div>
+                    </div>
+                </div>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Show Direction</span>
+                    <span class="tech-tag">Choreography</span>
+                    <span class="tech-tag">Artist Management</span>
+                    <span class="tech-tag">Team Leadership</span>
+                    <span class="tech-tag">Client Relations</span>
+                    <span class="tech-tag">Event Production</span>
+                    <span class="tech-tag">Creative Direction</span>
+                </div>
+            </div>
+            
+            <div class="achievement-box">
+                <p>
+                    <strong>From Stage to Code</strong><br><br>
+                    After 22 years directing shows globally and reaching Got Talent Israel finals, I saw how 
+                    technology could revolutionize creative production. I transitioned into AI engineering to 
+                    build platforms that empower creators, automate workflows, and scale artistic vision—combining 
+                    world-class entertainment experience with cutting-edge technology.
+                </p>
+            </div>
+        </section>
+        
+        <section id="projects" class="section">
+            <h2 class="section-title">AI Engineering Projects</h2>
+            
+            <!-- Frame2Flow -->
             <div class="project">
                 <div class="project-header">
                     <div>
@@ -486,7 +424,7 @@
                 </div>
             </div>
             
-            <!-- Project 2: Sales Deck Studio -->
+            <!-- Sales Deck Studio -->
             <div class="project">
                 <div class="project-header">
                     <div>
@@ -525,7 +463,7 @@
                 </div>
             </div>
             
-            <!-- Project 3: Treasure Hunt Platform -->
+            <!-- Treasure Hunt -->
             <div class="project">
                 <div class="project-header">
                     <div>
@@ -570,7 +508,7 @@
                 </div>
             </div>
             
-            <!-- Project 4: SaasIt -->
+            <!-- SaasIt -->
             <div class="project">
                 <div class="project-header">
                     <div>
@@ -615,7 +553,7 @@
                 </div>
             </div>
             
-            <!-- Project 5: Paper-to-Code -->
+            <!-- Paper-to-Code -->
             <div class="project">
                 <div class="project-header">
                     <div>
@@ -660,9 +598,8 @@
             </div>
         </section>
         
-        <!-- Footer -->
         <footer class="footer">
-            <p class="footer-text">Built by Navon Amos — AI Engineer building production systems</p>
+            <p class="footer-text">Built by Navon Amos — Show Director turned AI Engineer</p>
             <div class="footer-links">
                 <a href="https://github.com/navon2amos" target="_blank" class="footer-link">GitHub</a>
                 <a href="https://www.linkedin.com/in/navon-amos/" target="_blank" class="footer-link">LinkedIn</a>
