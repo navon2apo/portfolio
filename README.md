@@ -20,6 +20,6 @@ See full project breakdown here: [Full Portfolio](./portfolio/README.md)
 - Full-stack product development
 
 ## Contact
-- GitHub page: 
+- GitHub page: https://navon2apo.github.io/portfolio/
 - LinkedIn: https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile
 - Email: navon2amos@gmail.com
