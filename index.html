@@ -1,611 +1,934 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navon Amos — AI Engineer & Show Director Portfolio</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap');
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --bg-primary: #050505;
-            --bg-secondary: #0f0f0f;
-            --bg-card: #1a1a1a;
-            --accent-cyan: #00ffff;
-            --accent-magenta: #ff00ff;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --glow-cyan: rgba(0, 255, 255, 0.5);
-            --glow-magenta: rgba(255, 0, 255, 0.5);
-        }
-        
-        body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .grid-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px; z-index: 0;
-            animation: gridMove 20s linear infinite;
-        }
-        
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        .orb {
-            position: fixed; border-radius: 50%; filter: blur(80px);
-            opacity: 0.3; z-index: 0; animation: float 15s ease-in-out infinite;
-        }
-        
-        .orb-1 {
-            top: 10%; left: 20%; width: 300px; height: 300px;
-            background: var(--glow-cyan);
-        }
-        
-        .orb-2 {
-            bottom: 20%; right: 15%; width: 400px; height: 400px;
-            background: var(--glow-magenta); animation-delay: -5s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(50px, -50px) scale(1.1); }
-            66% { transform: translate(-30px, 30px) scale(0.9); }
-        }
-        
-        .container { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 2rem; }
-        
-        .hero {
-            min-height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; padding: 4rem 0;
-        }
-        
-        .hero h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 10vw, 8rem); font-weight: 900;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; margin-bottom: 1rem;
-            animation: glitch 3s infinite;
-        }
-        
-        @keyframes glitch {
-            0%, 90%, 100% { transform: translateX(0); }
-            92% { transform: translateX(-2px); }
-            94% { transform: translateX(2px); }
-            96% { transform: translateX(-2px); }
-        }
-        
-        .hero .tagline {
-            font-size: 1.5rem; color: var(--text-secondary);
-            margin-bottom: 0.5rem; font-weight: 300; letter-spacing: 0.1em;
-        }
-        
-        .hero .highlight {
-            font-size: 1.1rem; margin-top: 1.5rem;
-            color: var(--accent-cyan); font-weight: 400; line-height: 1.8;
-        }
-        
-        .hero .cta {
-            font-size: 1.2rem; color: var(--accent-cyan);
-            padding: 1rem 2rem; border: 2px solid var(--accent-cyan);
-            background: transparent; cursor: pointer;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase; letter-spacing: 0.15em;
-            transition: all 0.3s ease; text-decoration: none;
-            display: inline-block; margin-top: 2rem;
-        }
-        
-        .hero .cta:hover {
-            background: var(--accent-cyan); color: var(--bg-primary);
-            box-shadow: 0 0 30px var(--glow-cyan); transform: translateY(-2px);
-        }
-        
-        .stats {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem; margin: 4rem 0;
-        }
-        
-        .stat {
-            background: var(--bg-card); padding: 2rem;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            text-align: center; transition: all 0.3s ease;
-            position: relative; overflow: hidden;
-        }
-        
-        .stat::before {
-            content: ''; position: absolute; top: 0; left: -100%;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-            animation: scan 2s linear infinite;
-        }
-        
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-        
-        .stat:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 30px var(--glow-cyan); transform: translateY(-5px);
-        }
-        
-        .stat-number {
-            font-family: 'Orbitron', sans-serif; font-size: 3rem; font-weight: 900;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .stat-label {
-            color: var(--text-secondary); font-size: 0.9rem;
-            text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem;
-        }
-        
-        .section { margin: 8rem 0; }
-        
-        .section-title {
-            font-family: 'Orbitron', sans-serif; font-size: 3rem; font-weight: 700;
-            text-align: center; margin-bottom: 4rem; color: var(--accent-cyan);
-            text-transform: uppercase; letter-spacing: 0.15em;
-        }
-        
-        .project {
-            background: var(--bg-card); border: 1px solid rgba(0, 255, 255, 0.1);
-            margin-bottom: 4rem; padding: 3rem; position: relative;
-            transition: all 0.4s ease;
-        }
-        
-        .project::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 0;
-            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-magenta));
-            transition: height 0.4s ease;
-        }
-        
-        .project:hover::after { height: 100%; }
-        
-        .project:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 10px 60px rgba(0, 255, 255, 0.2);
-            transform: translateX(10px);
-        }
-        
-        .project-header {
-            display: flex; justify-content: space-between;
-            align-items: flex-start; margin-bottom: 2rem;
-        }
-        
-        .project-title {
-            font-family: 'Orbitron', sans-serif; font-size: 2rem;
-            font-weight: 700; color: var(--accent-cyan); margin-bottom: 0.5rem;
-        }
-        
-        .project-subtitle {
-            color: var(--text-secondary); font-size: 1.1rem; font-weight: 300;
-        }
-        
-        .project-status {
-            background: var(--accent-magenta); color: var(--bg-primary);
-            padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.1em;
-            font-family: 'Orbitron', sans-serif;
-        }
-        
-        .project-description {
-            color: var(--text-secondary); margin-bottom: 2rem;
-            font-size: 1.1rem; line-height: 1.8;
-        }
-        
-        .project-features {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem; margin-bottom: 2rem;
-        }
-        
-        .feature {
-            background: var(--bg-secondary); padding: 1.5rem;
-            border-left: 3px solid var(--accent-cyan);
-        }
-        
-        .feature-title {
-            color: var(--accent-cyan); font-weight: 600; margin-bottom: 0.5rem;
-            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em;
-        }
-        
-        .feature-text {
-            color: var(--text-secondary); font-size: 0.95rem;
-        }
-        
-        .tech-stack {
-            display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem;
-        }
-        
-        .tech-tag {
-            background: transparent; border: 1px solid var(--accent-magenta);
-            color: var(--accent-magenta); padding: 0.4rem 1rem;
-            font-size: 0.85rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-        }
-        
-        .tech-tag:hover {
-            background: var(--accent-magenta); color: var(--bg-primary);
-            box-shadow: 0 0 20px var(--glow-magenta);
-        }
-        
-        .achievement-box {
-            text-align: center; padding: 2rem; background: var(--bg-card);
-            border: 1px solid rgba(0,255,255,0.2); margin-top: 3rem;
-        }
-        
-        .achievement-box p {
-            color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8;
-        }
-        
-        .achievement-box strong { color: var(--accent-cyan); }
-        
-        .footer {
-            text-align: center; padding: 4rem 0;
-            border-top: 1px solid rgba(0, 255, 255, 0.2); margin-top: 8rem;
-        }
-        
-        .footer-text { color: var(--text-secondary); margin-bottom: 1rem; }
-        
-        .footer-links {
-            display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;
-        }
-        
-        .footer-link {
-            color: var(--accent-cyan); text-decoration: none;
-            font-family: 'Orbitron', sans-serif; text-transform: uppercase;
-            letter-spacing: 0.1em; transition: all 0.3s ease;
-        }
-        
-        .footer-link:hover {
-            color: var(--accent-magenta); text-shadow: 0 0 20px var(--glow-magenta);
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .project-header { flex-direction: column; gap: 1rem; }
-            .project-features { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navon Amos — Builder of AI Systems, Creative Technology, and Production Workflows</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #050505;
+      --bg-secondary: #0f0f0f;
+      --bg-card: #171717;
+      --bg-card-2: #111111;
+      --accent-cyan: #00ffff;
+      --accent-magenta: #ff00ff;
+      --text-primary: #ffffff;
+      --text-secondary: #a5a5a5;
+      --text-muted: #7b7b7b;
+      --border-soft: rgba(0, 255, 255, 0.14);
+      --glow-cyan: rgba(0, 255, 255, 0.22);
+      --glow-magenta: rgba(255, 0, 255, 0.18);
+      --max-width: 1320px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      z-index: 0;
+      animation: gridMove 22s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(48px, 48px); }
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(85px);
+      opacity: 0.28;
+      z-index: 0;
+      animation: float 16s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .orb-1 {
+      top: 8%;
+      left: 10%;
+      width: 320px;
+      height: 320px;
+      background: var(--glow-cyan);
+    }
+
+    .orb-2 {
+      right: 10%;
+      bottom: 10%;
+      width: 420px;
+      height: 420px;
+      background: var(--glow-magenta);
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(40px, -36px) scale(1.06); }
+      66% { transform: translate(-28px, 24px) scale(0.94); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 72px 0 32px;
+    }
+
+    .hero-inner {
+      max-width: 980px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 8px 14px;
+      border: 1px solid rgba(0, 255, 255, 0.24);
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(0, 255, 255, 0.05);
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(3rem, 8vw, 6.6rem);
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--accent-cyan), #c7ffff 35%, #ffffff 50%, #ffc6ff 70%, var(--accent-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-title {
+      font-size: clamp(1.15rem, 2vw, 1.65rem);
+      color: #d7d7d7;
+      max-width: 960px;
+      margin: 0 auto 18px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-copy {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-copy + .hero-copy {
+      margin-top: 10px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 190px;
+      padding: 14px 22px;
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.86rem;
+      font-weight: 700;
+      transition: all 0.28s ease;
+      background: transparent;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .cta:hover {
+      background: var(--accent-cyan);
+      color: var(--bg-primary);
+      box-shadow: 0 0 28px var(--glow-cyan);
+      transform: translateY(-2px);
+    }
+
+    .cta.secondary {
+      border-color: rgba(255, 0, 255, 0.45);
+      color: #ffd8ff;
+    }
+
+    .cta.secondary:hover {
+      background: var(--accent-magenta);
+      color: var(--bg-primary);
+      box-shadow: 0 0 28px var(--glow-magenta);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin: 8px 0 72px;
+    }
+
+    .stat {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--border-soft);
+      padding: 26px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .stat:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,255,255,0.35);
+      box-shadow: 0 0 24px rgba(0,255,255,0.12);
+    }
+
+    .stat::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+      animation: scan 2.6s linear infinite;
+    }
+
+    @keyframes scan {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .stat-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .section {
+      margin: 90px 0;
+    }
+
+    .section-head {
+      margin-bottom: 32px;
+      max-width: 900px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .section-copy {
+      color: var(--text-secondary);
+      max-width: 860px;
+      font-size: 1rem;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(0,255,255,0.10);
+      padding: 30px;
+      transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0,255,255,0.28);
+      box-shadow: 0 14px 44px rgba(0,255,255,0.09);
+    }
+
+    .background-grid,
+    .build-grid,
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .mini-card {
+      background: var(--bg-card-2);
+      border-left: 3px solid var(--accent-cyan);
+      padding: 18px;
+    }
+
+    .mini-card h4 {
+      color: var(--accent-cyan);
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+
+    .mini-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .project {
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      border: 1px solid rgba(0,255,255,0.10);
+      padding: 32px;
+      margin-bottom: 28px;
+      position: relative;
+      transition: all 0.32s ease;
+    }
+
+    .project:hover {
+      border-color: rgba(0,255,255,0.30);
+      box-shadow: 0 12px 44px rgba(0,255,255,0.11);
+      transform: translateX(8px);
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background: linear-gradient(180deg, var(--accent-cyan), var(--accent-magenta));
+      transition: height 0.35s ease;
+    }
+
+    .project:hover::after {
+      height: 100%;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .project-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    .project-subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .project-status {
+      padding: 8px 12px;
+      background: rgba(255, 0, 255, 0.90);
+      color: var(--bg-primary);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+      font-size: 1rem;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .bullet-list li {
+      color: #dadada;
+      padding-left: 18px;
+      position: relative;
+      font-size: 0.98rem;
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--glow-cyan);
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tech-tag {
+      border: 1px solid rgba(255, 0, 255, 0.45);
+      color: #ffc7ff;
+      padding: 7px 12px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 700;
+      transition: all 0.28s ease;
+    }
+
+    .tech-tag:hover {
+      background: rgba(255, 0, 255, 0.14);
+      box-shadow: 0 0 18px var(--glow-magenta);
+    }
+
+    .tools-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .tool-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .tool-list li {
+      color: var(--text-secondary);
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .tool-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-magenta);
+      box-shadow: 0 0 10px var(--glow-magenta);
+    }
+
+    .footer {
+      padding-top: 32px;
+      margin-top: 90px;
+      border-top: 1px solid rgba(0,255,255,0.14);
+      text-align: center;
+    }
+
+    .footer-text {
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      transition: all 0.25s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--accent-magenta);
+      text-shadow: 0 0 16px var(--glow-magenta);
+    }
+
+    @media (max-width: 980px) {
+      .stats,
+      .background-grid,
+      .build-grid,
+      .workflow-grid,
+      .tools-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 18px 64px;
+      }
+
+      .hero {
+        padding-top: 56px;
+      }
+
+      .project-header {
+        flex-direction: column;
+      }
+
+      .project-status {
+        white-space: normal;
+      }
+
+      .cta {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="grid-bg"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    
-    <div class="container">
-        <section class="hero">
-            <h1>Navon Amos</h1>
-            <p class="tagline">AI Engineer • Full-Stack Developer • System Architect</p>
-            <p class="highlight">
-                Former Show Director (22 years) • Got Talent Israel Finalist<br>
-                Eurovision Performer • Global Productions • Hi-Tech Corporate Clients
-            </p>
-            <a href="#background" class="cta">View Portfolio</a>
-        </section>
-        
-        <section class="stats">
-            <div class="stat">
-                <div class="stat-number">22</div>
-                <div class="stat-label">Years Show Director</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">🌍</div>
-                <div class="stat-label">Global Performances</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">5+</div>
-                <div class="stat-label">Production Apps</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">30+</div>
-                <div class="stat-label">AI Features</div>
-            </div>
-        </section>
-        
-        <section id="background" class="section" style="margin: 4rem 0;">
-            <h2 class="section-title" style="font-size: 2rem;">Background</h2>
-            
-            <div class="project">
-                <div class="project-header">
-                    <div>
-                        <h3 class="project-title" style="font-size: 1.5rem;">Show Director & Producer</h3>
-                        <p class="project-subtitle">22 Years Leading International Productions</p>
-                    </div>
-                </div>
-                
-                <p class="project-description">
-                    Led a successful entertainment production company for over two decades, directing shows worldwide, 
-                    managing artists and creative teams, and producing high-profile performances. Reached the finals 
-                    of Got Talent Israel, performed at Eurovision, and delivered productions for major hi-tech companies.
-                </p>
-                
-                <div class="project-features">
-                    <div class="feature">
-                        <div class="feature-title">🎭 Show Direction</div>
-                        <div class="feature-text">Directed and choreographed productions performed across the globe</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🌍 Global Performances</div>
-                        <div class="feature-text">Eurovision, Got Talent Israel Finals, international tours and events</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">💼 Corporate Clients</div>
-                        <div class="feature-text">Hi-tech companies, events, and corporate entertainment productions</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🎵 Creative Leadership</div>
-                        <div class="feature-text">Music direction, choreography creation, artist management, team building</div>
-                    </div>
-                </div>
-                
-                <div class="tech-stack">
-                    <span class="tech-tag">Show Direction</span>
-                    <span class="tech-tag">Choreography</span>
-                    <span class="tech-tag">Artist Management</span>
-                    <span class="tech-tag">Team Leadership</span>
-                    <span class="tech-tag">Client Relations</span>
-                    <span class="tech-tag">Event Production</span>
-                    <span class="tech-tag">Creative Direction</span>
-                </div>
-            </div>
-            
-            <div class="achievement-box">
-                <p>
-                    <strong>From Stage to Code</strong><br><br>
-                    After 22 years directing shows globally and reaching Got Talent Israel finals, I saw how 
-                    technology could revolutionize creative production. I transitioned into AI engineering to 
-                    build platforms that empower creators, automate workflows, and scale artistic vision—combining 
-                    world-class entertainment experience with cutting-edge technology.
-                </p>
-            </div>
-        </section>
-        
-        <section id="projects" class="section">
-            <h2 class="section-title">AI Engineering Projects</h2>
-            
-            <!-- Frame2Flow -->
-            <div class="project">
-                <div class="project-header">
-                    <div>
-                        <h3 class="project-title">Frame2Flow</h3>
-                        <p class="project-subtitle">AI-Powered Video Production Platform</p>
-                    </div>
-                    <div class="project-status">Production</div>
-                </div>
-                
-                <p class="project-description">
-                    Complete video production pipeline with 30+ features including voice cloning, lip sync, 
-                    character consistency across 100+ frames, AI-based editing, and viral video recreation.
-                </p>
-                
-                <div class="project-features">
-                    <div class="feature">
-                        <div class="feature-title">🎤 Voice & Audio</div>
-                        <div class="feature-text">Voice cloning (30-sec training), multi-character dialogue, lip sync, talking avatars</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">✂️ AI Editing</div>
-                        <div class="feature-text">Chat-based editing ("make darker"), head replacement, camera control</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🔄 Continuity</div>
-                        <div class="feature-text">Last frame extraction, cross-dissolve transitions, 100+ frame consistency</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🔥 Viral Pipeline</div>
-                        <div class="feature-text">YouTube analysis, brand integration, TikTok captions</div>
-                    </div>
-                </div>
-                
-                <div class="tech-stack">
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">BullMQ</span>
-                    <span class="tech-tag">Redis</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                    <span class="tech-tag">Docker</span>
-                    <span class="tech-tag">LLM Agents</span>
-                    <span class="tech-tag">Remotion</span>
-                </div>
-            </div>
-            
-            <!-- Sales Deck Studio -->
-            <div class="project">
-                <div class="project-header">
-                    <div>
-                        <h3 class="project-title">Sales Deck Studio</h3>
-                        <p class="project-subtitle">AI Presentation Generator + Remotion Animation</p>
-                    </div>
-                    <div class="project-status">Production</div>
-                </div>
-                
-                <p class="project-description">
-                    Desktop application that generates professional sales presentations using user's API key, 
-                    then creates animated promo videos from website URLs using Remotion.
-                </p>
-                
-                <div class="project-features">
-                    <div class="feature">
-                        <div class="feature-title">📊 Auto Deck Generation</div>
-                        <div class="feature-text">AI-generated slides, charts, talking points from company info</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🎬 Website-to-Video</div>
-                        <div class="feature-text">Capture screenshots, extract content, create animated promo with Remotion</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🔑 User API Keys</div>
-                        <div class="feature-text">Secure local storage, multi-provider support, cost tracking</div>
-                    </div>
-                </div>
-                
-                <div class="tech-stack">
-                    <span class="tech-tag">Electron</span>
-                    <span class="tech-tag">Remotion</span>
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Puppeteer</span>
-                    <span class="tech-tag">LLM APIs</span>
-                </div>
-            </div>
-            
-            <!-- Treasure Hunt -->
-            <div class="project">
-                <div class="project-header">
-                    <div>
-                        <h3 class="project-title">Treasure Hunt Platform</h3>
-                        <p class="project-subtitle">Real-Time Location Gaming with AI Riddles</p>
-                    </div>
-                    <div class="project-status">Production</div>
-                </div>
-                
-                <p class="project-description">
-                    Platform for creating treasure hunt games with automatic waypoint detection, AI-generated riddles, 
-                    payment processing, and real-time location sharing.
-                </p>
-                
-                <div class="project-features">
-                    <div class="feature">
-                        <div class="feature-title">🗺️ Auto Waypoints</div>
-                        <div class="feature-text">AI analyzes map, marks landmarks, generates waypoints automatically</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🤖 AI Riddles</div>
-                        <div class="feature-text">GPT-4 generates custom riddles/clues based on location type</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">💰 Payments & Prizes</div>
-                        <div class="feature-text">Entry fees, prize pools, winner payouts, leaderboard</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">📍 Real-Time Sharing</div>
-                        <div class="feature-text">Live location during game, proximity alerts, privacy controls</div>
-                    </div>
-                </div>
-                
-                <div class="tech-stack">
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">WebSocket</span>
-                    <span class="tech-tag">React Native</span>
-                    <span class="tech-tag">PostGIS</span>
-                    <span class="tech-tag">Google Maps</span>
-                    <span class="tech-tag">Stripe</span>
-                    <span class="tech-tag">GPT-4</span>
-                </div>
-            </div>
-            
-            <!-- SaasIt -->
-            <div class="project">
-                <div class="project-header">
-                    <div>
-                        <h3 class="project-title">SaasIt</h3>
-                        <p class="project-subtitle">Multi-Agent Platform with CRM & Voice</p>
-                    </div>
-                    <div class="project-status">Production</div>
-                </div>
-                
-                <p class="project-description">
-                    Platform for creating custom AI agents for sales, support, content creation, and competitor research 
-                    with built-in CRM, voice capabilities, knowledge base, and 1000+ app integrations via Pipedream.
-                </p>
-                
-                <div class="project-features">
-                    <div class="feature">
-                        <div class="feature-title">🤖 Multi-Agent Types</div>
-                        <div class="feature-text">Sales, support, content, competitor research agents by role</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">💼 Built-In CRM</div>
-                        <div class="feature-text">Contact management, conversation history, deal pipeline per agent</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🎤 Voice Capabilities</div>
-                        <div class="feature-text">Voice commands, speech-to-text, sentiment analysis</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🔌 1000+ Integrations</div>
-                        <div class="feature-text">Pipedream Connect for Gmail, Slack, HubSpot, Salesforce, etc.</div>
-                    </div>
-                </div>
-                
-                <div class="tech-stack">
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">Claude API</span>
-                    <span class="tech-tag">Pipedream</span>
-                    <span class="tech-tag">MCP</span>
-                    <span class="tech-tag">Vector DB</span>
-                    <span class="tech-tag">PostgreSQL</span>
-                    <span class="tech-tag">Voice AI</span>
-                </div>
-            </div>
-            
-            <!-- Paper-to-Code -->
-            <div class="project">
-                <div class="project-header">
-                    <div>
-                        <h3 class="project-title">Paper-to-Code</h3>
-                        <p class="project-subtitle">Academic Research to Implementation</p>
-                    </div>
-                    <div class="project-status">Production</div>
-                </div>
-                
-                <p class="project-description">
-                    Platform that searches academic papers, analyzes methodology, and generates working code implementations 
-                    using open-source DeepSeek Coder with intermediate request broker.
-                </p>
-                
-                <div class="project-features">
-                    <div class="feature">
-                        <div class="feature-title">📚 Paper Search</div>
-                        <div class="feature-text">Semantic Scholar, arXiv APIs, relevance ranking</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🔬 Methodology Extraction</div>
-                        <div class="feature-text">AI reads paper, identifies algorithms, extracts pseudocode</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">💻 Code Generation</div>
-                        <div class="feature-text">DeepSeek Coder generates runnable implementation with tests</div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-title">🛡️ Quality Checks</div>
-                        <div class="feature-text">Syntax checking, linting, security scanning, sandboxed execution</div>
-                    </div>
-                </div>
-                
-                <div class="tech-stack">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">FastAPI</span>
-                    <span class="tech-tag">DeepSeek</span>
-                    <span class="tech-tag">Docker</span>
-                    <span class="tech-tag">Semantic Scholar</span>
-                    <span class="tech-tag">arXiv API</span>
-                </div>
-            </div>
-        </section>
-        
-        <footer class="footer">
-            <p class="footer-text">Built by Navon Amos — Show Director turned AI Engineer</p>
-            <div class="footer-links">
-                <a href="https://navon2apo.github.io/portfolio/" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
-                <a href="https://www.linkedin.com/in/navon-amos/" target="_blank" class="footer-link">LinkedIn</a>
-                <a href="mailto:navon2amos@gmail.com" class="footer-link">Email</a>
-            </div>
-        </footer>
-    </div>
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">Portfolio</div>
+        <h1>Navon Amos</h1>
+        <p class="hero-title">Builder of real world systems across live production, creative technology, and AI driven software.</p>
+        <p class="hero-copy">
+          For over 22 years I have been building and running DEMENTE Show, leading stage productions, teams, suppliers,
+          performers, animation workflows, rehearsals, logistics, and live execution under real pressure.
+        </p>
+        <p class="hero-copy">
+          Today I apply the same execution mindset to building AI products, workflow systems, and full stack tools from concept
+          to production, with hands on work across frontend, backend, orchestration, debugging, infrastructure, and product logic.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="cta">View Projects</a>
+          <a href="#workflow" class="cta secondary">How I Work</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <div class="stat-number">22</div>
+        <div class="stat-label">Years Running Productions</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">2007</div>
+        <div class="stat-label">DEMENTE Show to Present</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Systems Built End to End</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">AI</div>
+        <div class="stat-label">Workflows, Agents, Media Pipelines</div>
+      </div>
+    </section>
+
+    <section id="background" class="section">
+      <div class="section-head">
+        <div class="section-kicker">Background</div>
+        <h2 class="section-title">DEMENTE Show and Execution Mindset</h2>
+        <p class="section-copy">
+          My background did not start in software. It started in live production, creative direction, timing, logistics,
+          and making complex systems work on real stages with real people and real constraints.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="project-header">
+          <div>
+            <h3 class="project-title">DEMENTE Show</h3>
+            <p class="project-subtitle">Creative Director, Technical Builder, Producer, and Operator • 2007 to Present</p>
+          </div>
+        </div>
+
+        <ul class="bullet-list">
+          <li>Built and ran a live performance business around technology based stage shows, rhythm performances, visuals, and multimedia production.</li>
+          <li>Managed teams, performers, suppliers, rehearsals, stage logistics, technical flow, and live delivery under pressure.</li>
+          <li>Directed shows from concept to stage ready execution, including creative planning, production decisions, timing, and adaptation on the ground.</li>
+          <li>Created animations, visual assets, show content, and custom tools to support performance workflows and branded productions.</li>
+          <li>Worked across client expectations, technical limitations, and execution quality in real world environments where failure is visible immediately.</li>
+          <li>Built an operating mindset around reliability, clarity, iteration, and solving problems fast without losing the creative goal.</li>
+        </ul>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Creative Direction</span>
+          <span class="tech-tag">Animation</span>
+          <span class="tech-tag">Production Leadership</span>
+          <span class="tech-tag">Stage Operations</span>
+          <span class="tech-tag">Team Management</span>
+          <span class="tech-tag">Live Execution</span>
+        </div>
+      </div>
+
+      <div class="background-grid">
+        <div class="mini-card">
+          <h4>Why it matters</h4>
+          <p>I do not approach products like slideware. I approach them like productions that must actually run, hold under pressure, and be usable in practice.</p>
+        </div>
+        <div class="mini-card">
+          <h4>What transferred</h4>
+          <p>Execution discipline, system thinking, quality control, coordination under pressure, creative iteration, and the habit of taking things all the way to working output.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="build" class="section">
+      <div class="section-head">
+        <div class="section-kicker">Today</div>
+        <h2 class="section-title">What I Build</h2>
+        <p class="section-copy">
+          I build products from zero to working systems. The work usually spans interface, backend, orchestration, prompt logic,
+          payments, credits, data flows, debugging, model behavior, and production hardening.
+        </p>
+      </div>
+
+      <div class="build-grid">
+        <div class="mini-card">
+          <h4>AI Product Systems</h4>
+          <p>Applied AI products, agent workflows, prompt systems, generation flows, and model orchestration built for actual use rather than demos.</p>
+        </div>
+        <div class="mini-card">
+          <h4>Full Stack Execution</h4>
+          <p>Frontend, backend, state flows, database work, queue orchestration, auth, storage, and feature implementation across the full product.</p>
+        </div>
+        <div class="mini-card">
+          <h4>Product Logic</h4>
+          <p>Credit systems, usage tracking, payment connected logic, workflow controls, role based behavior, and operational product architecture.</p>
+        </div>
+        <div class="mini-card">
+          <h4>Debugging and Reliability</h4>
+          <p>Rate limits, edge cases, broken flows, model inconsistency, infrastructure issues, and the iteration required to make systems stable.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-head">
+        <div class="section-kicker">Selected Projects</div>
+        <h2 class="section-title">Systems I Built</h2>
+        <p class="section-copy">
+          These are not product pitches. They are examples of the kinds of systems, workflows, and execution problems I have actually built through.
+        </p>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div>
+            <h3 class="project-title">Frame2Flow</h3>
+            <p class="project-subtitle">AI video workflow system built as a controllable generation environment, not a single prompt tool.</p>
+          </div>
+          <div class="project-status">Production</div>
+        </div>
+
+        <ul class="bullet-list">
+          <li>Designed and built the system architecture end to end, from user input and project flow to orchestration, generation, review, and output handling.</li>
+          <li>Developed frontend systems in React and backend services in Node.js for studio style workflow control, execution state, and project management.</li>
+          <li>Built prompt engineering workflows using structured inputs, reusable blocks, model specific shaping, and controllable generation logic.</li>
+          <li>Designed flows for video analysis, viral structure breakdown, prompt block construction, and turning references into reusable generation pipelines.</li>
+          <li>Built internal credit logic, usage calculation, credit management, and payment connected product flows.</li>
+          <li>Worked extensively with Supabase across auth, queries, storage, settings, and workflow connected data handling.</li>
+          <li>Built queue based execution and long running background workflows for generation tasks and system orchestration.</li>
+          <li>Solved production problems across rate limits, debugging, model behavior, edge cases, continuity logic, and stability under real usage.</li>
+        </ul>
+
+        <div class="tech-stack">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Supabase</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Redis</span>
+          <span class="tech-tag">BullMQ</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Cloudinary</span>
+          <span class="tech-tag">LLM Workflows</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div>
+            <h3 class="project-title">SaaSIt</h3>
+            <p class="project-subtitle">Multi tenant system for generating reusable AI agents from a shared internal architecture.</p>
+          </div>
+          <div class="project-status">Production</div>
+        </div>
+
+        <ul class="bullet-list">
+          <li>Designed and built a multi tenant agent creation system that turns a business website into structured agent inputs.</li>
+          <li>Built the workflow for role definition, behavior settings, knowledge context, tool access, execution settings, and reusable agent generation.</li>
+          <li>Created a templated internal engine so multiple agent types could be produced from the same foundation instead of rebuilding each flow manually.</li>
+          <li>Added support for tool connected agents and execution oriented integration flows, including MCP style connectivity and external action capability.</li>
+          <li>Built marketplace logic for publishing, pricing, and reusing agents inside the platform.</li>
+          <li>Developed the product as an operational layer for managing digital workers and task flows rather than a simple assistant interface.</li>
+        </ul>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">MCP</span>
+          <span class="tech-tag">Pipedream</span>
+          <span class="tech-tag">LLM APIs</span>
+          <span class="tech-tag">Voice AI</span>
+          <span class="tech-tag">Multi Tenant Logic</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div>
+            <h3 class="project-title">Treasure Hunt Platform</h3>
+            <p class="project-subtitle">AI assisted system for building structured location based experiences and interactive real world routes.</p>
+          </div>
+          <div class="project-status">Production</div>
+        </div>
+
+        <ul class="bullet-list">
+          <li>Designed and built the product from concept to working system with route generation, challenge flow, and creator side management logic.</li>
+          <li>Built the workflow that transforms selected geographic areas into structured points, route steps, and interactive challenge progression.</li>
+          <li>Developed product logic for invitations, timing, participant flow, progression, rewards, and repeatable experience creation.</li>
+          <li>Worked on offline aware behavior and continuity so the system could remain usable in real world conditions with limited connectivity.</li>
+          <li>Structured the platform so creators could generate, manage, and commercialize location based experiences through a repeatable system flow.</li>
+        </ul>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Maps APIs</span>
+          <span class="tech-tag">Location Logic</span>
+          <span class="tech-tag">AI Generation</span>
+          <span class="tech-tag">Realtime Flows</span>
+          <span class="tech-tag">Offline Aware UX</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div>
+            <h3 class="project-title">Paper to Code</h3>
+            <p class="project-subtitle">Research to implementation workflow built by extending an open source coding system with a paper driven layer.</p>
+          </div>
+          <div class="project-status">Production</div>
+        </div>
+
+        <ul class="bullet-list">
+          <li>Took an existing open source coding system and extended it with an additional layer for research paper driven implementation workflows.</li>
+          <li>Built logic for feeding papers into the system in a more structured way to improve output relevance and implementation accuracy.</li>
+          <li>Reframed the base workflow from generic code generation into a more directed research to application process.</li>
+          <li>Focused on improving how technical source material is interpreted, transformed, and passed into downstream code generation.</li>
+          <li>Used layering, orchestration, and input shaping to make the underlying system more useful for practical engineering work.</li>
+        </ul>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">FastAPI</span>
+          <span class="tech-tag">Open Source Adaptation</span>
+          <span class="tech-tag">Paper Parsing</span>
+          <span class="tech-tag">Code Generation</span>
+          <span class="tech-tag">Workflow Layering</span>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div>
+            <h3 class="project-title">Sales Deck Studio</h3>
+            <p class="project-subtitle">Automation oriented media and presentation workflow system.</p>
+          </div>
+          <div class="project-status">Production</div>
+        </div>
+
+        <ul class="bullet-list">
+          <li>Built the application structure and execution flow for automated deck and media generation.</li>
+          <li>Connected interface level actions with backend rendering and workflow execution.</li>
+          <li>Worked on repeatable generation logic, output consistency, and product flow reliability.</li>
+          <li>Kept the system practical and restrained rather than overbuilding unsupported complexity.</li>
+        </ul>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Electron</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Remotion</span>
+          <span class="tech-tag">Puppeteer</span>
+          <span class="tech-tag">LLM APIs</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="section">
+      <div class="section-head">
+        <div class="section-kicker">Workflow</div>
+        <h2 class="section-title">How I Build</h2>
+        <p class="section-copy">
+          I work like an operator. I learn what is needed, go deep into the system, and keep refining until the workflow is usable,
+          stable, and strong enough for real conditions.
+        </p>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="mini-card">
+          <h4>Builder mindset</h4>
+          <p>I think in flows, constraints, weak points, recovery paths, and what has to be true for the whole system to actually work.</p>
+        </div>
+        <div class="mini-card">
+          <h4>Validation first</h4>
+          <p>I like turning ideas into working systems, checking reality fast, and improving from actual friction instead of theory alone.</p>
+        </div>
+        <div class="mini-card">
+          <h4>Deep iteration</h4>
+          <p>I care about control, polish, and reliability. I keep pushing until the result feels operational, not just technically possible.</p>
+        </div>
+        <div class="mini-card">
+          <h4>Fast learning</h4>
+          <p>When a system needs a new layer, I go learn that layer and keep moving. I do not stop at the boundary of what I already know.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" class="section">
+      <div class="section-head">
+        <div class="section-kicker">Development Workflow</div>
+        <h2 class="section-title">How I Develop Today</h2>
+        <p class="section-copy">
+          I use AI assisted development seriously and practically as part of real product building, debugging, architecture work, implementation,
+          and iteration, not as a shortcut for shallow output.
+        </p>
+      </div>
+
+      <div class="tools-row">
+        <div class="card">
+          <h3 class="project-title" style="font-size:1.3rem;">AI Assisted Development Stack</h3>
+          <p class="project-description">
+            I actively work with Cursor, Claude Code, and Codex as part of my development workflow across architecture, implementation,
+            debugging, orchestration, prompt systems, and product iteration.
+          </p>
+          <ul class="tool-list">
+            <li><strong style="color:#fff;">Cursor</strong> for rapid development, codebase navigation, iteration loops, and implementation flow.</li>
+            <li><strong style="color:#fff;">Claude Code</strong> for deeper reasoning, refactors, planning through system constraints, and implementation support.</li>
+            <li><strong style="color:#fff;">Codex</strong> for hands on code generation, alternative solution paths, and execution assistance inside product work.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="project-title" style="font-size:1.3rem;">What That Enables</h3>
+          <ul class="tool-list">
+            <li>Faster movement from idea to working prototype.</li>
+            <li>Better coverage across frontend, backend, infra, and workflow logic.</li>
+            <li>More structured debugging and iteration loops.</li>
+            <li>Stronger ability to explore multiple implementation paths before locking one in.</li>
+            <li>Higher output without losing control over architecture and product direction.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="section">
+      <div class="section-head">
+        <div class="section-kicker">Stack</div>
+        <h2 class="section-title">Core Technologies</h2>
+      </div>
+
+      <div class="card">
+        <div class="tech-stack">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Express</span>
+          <span class="tech-tag">Supabase</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Redis</span>
+          <span class="tech-tag">BullMQ</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Cloudinary</span>
+          <span class="tech-tag">LLM APIs</span>
+          <span class="tech-tag">Prompt Systems</span>
+          <span class="tech-tag">Automation Workflows</span>
+          <span class="tech-tag">Payments</span>
+          <span class="tech-tag">Credits Logic</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="footer-text">Built by Navon Amos — from DEMENTE Show to AI systems, workflows, and production minded software.</p>
+      <div class="footer-links">
+        <a href="https://github.com/navon2apo" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/navon-amos/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        <a href="mailto:navon2amos@gmail.com" class="footer-link">Email</a>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
