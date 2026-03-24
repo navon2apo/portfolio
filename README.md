@@ -36,53 +36,51 @@ Creative Director, Technical Builder, Producer, and Operator
 
 ### Frame2Flow
 
-AI video workflow platform built to turn ideas, scripts, structured inputs, and analyzed references into controllable generation pipelines.
+AI video workflow platform built from the ground up as a controllable generation system for ideas, scripts, structured inputs, and analyzed video references.
 
-- Designed and built the product architecture end to end, from user flow to orchestration, generation, review, and output handling
-- Developed frontend systems in React and backend services in Node.js for project flow, execution control, and studio style workflow management
-- Built prompt engineering systems using structured inputs, controllable prompt blocks, reusable generation logic, and model specific shaping
-- Developed workflows for analyzing videos, extracting structure, and converting creative patterns into generation ready pipelines
-- Built logic for transforming viral video references into structured flows that can drive new output generation
-- Combined multiple model capabilities into new workflows instead of using models as isolated single step tools
-- Built internal credit logic, usage calculation, and generation related consumption flows inside the product
-- Integrated payment related product logic for paid usage systems
-- Worked extensively with Supabase across auth, database structure, queries, storage, settings, and workflow connected data handling
-- Built queue based background execution for long running generation tasks and orchestration reliability
-- Solved production issues across debugging, rate limits, model behavior, system stability, and edge case handling
-- Iterated on product UX and workflow control until the system became more practical, directed, and reliable
-
-### Sales Deck Studio
-
-Automation oriented media and presentation workflow system.
-
-- Built the application structure and execution flow for automated content and media generation
-- Connected interfaces with backend execution and rendering workflows
-- Extended the system with reusable logic for repeated generation tasks
-- Worked across implementation, debugging, and output consistency
+- Designed and built the system architecture end to end, from user input and project flow to orchestration, generation, review, and output handling
+- Developed frontend systems in React and backend services in Node.js for studio style workflow management, execution control, and project handling
+- Built prompt engineering workflows using structured inputs, reusable blocks, controllable generation logic, and model specific shaping
+- Designed flows for video analysis, structure extraction, viral reference breakdown, and transformation into generation ready pipelines
+- Combined multiple model capabilities into new workflows instead of relying on isolated default model behavior
+- Built credit based logic including usage calculation, internal credit management, and generation related consumption flows
+- Integrated payment related logic for paid usage product flows
+- Worked extensively with Supabase for auth, database structure, queries, storage, settings, and workflow connected data handling
+- Built queue based execution and background processing for long running generation tasks and orchestration reliability
+- Solved production issues across debugging, rate limits, model behavior, edge cases, and system stability
+- Iterated heavily on product control, workflow quality, and studio level UX until the system became more directed, usable, and reliable
 
 ### SaaSIt
 
-Applied AI workflow system for structured business actions and execution flows.
+Multi tenant platform for generating reusable AI agents from a fixed internal system architecture.
 
-- Designed workflows connecting LLM logic with structured product behavior
-- Built action based flows for task handling, information processing, and business operations
-- Developed the system as an execution layer, not just a chat interface
+- Designed and built a multi tenant agent creation system that could generate role based AI workers from a shared product foundation
+- Built the workflow that turns a website into structured agent inputs including knowledge context, role definition, behavior, tool access, and execution settings
+- Created a templated generation engine so different agent types could be produced without rebuilding the system each time
+- Added support for tool connected agents with external action capability, including integration oriented flows and MCP style connectivity
+- Built marketplace logic for publishing, pricing, and reusing agents inside the platform
+- Developed the system as an operational layer for creating and managing task oriented AI workers rather than a simple chat experience
 
 ### Treasure Hunt Platform
 
-Interactive real time application for event based participation and live progression.
+AI assisted location based system for building structured interactive routes and playable real world experiences.
 
-- Built the technical structure for real time interaction and user progression
-- Implemented state driven logic, action handling, and event based flow
-- Developed the system from concept to working product
+- Designed and built the system from concept to working product with logic for route generation, challenge flow, and location driven interaction
+- Built the generation workflow that transforms selected geographic areas into structured points, route logic, and interactive challenge steps
+- Developed the core product logic for invitations, timing, participant flow, progression, rewards, and repeatable experience creation
+- Worked on making the system usable in real conditions including offline aware behavior and continuity of experience
+- Structured the platform so creators could generate, manage, and commercialize location based experiences through a repeatable product flow
+- Combined AI logic, product design, and execution thinking to turn a creative concept into a functional interactive system
 
 ### Paper to Code
 
-Workflow system for turning source material and technical ideas into implementation ready direction.
+Research to implementation workflow built by extending an existing open source coding system.
 
-- Built structured extraction and transformation logic from technical content
-- Developed workflows for converting complex material into practical engineering output
-- Focused on turning knowledge into usable development action
+- Took an existing open source coding system and extended it with an additional layer for research paper driven implementation workflows
+- Built logic for feeding papers into the system in a more structured way to improve output relevance and implementation accuracy
+- Reframed the base system from generic code generation into a more directed research to application workflow
+- Focused on improving how technical source material is interpreted, transformed, and passed into downstream code generation
+- Used layering, orchestration, and input shaping to make the underlying system more useful for practical engineering work
 
 ## Core Capabilities
 
@@ -115,3 +113,5 @@ I come from execution heavy environments where systems have to work under pressu
 - GitHub: [navon2apo](https://github.com/navon2apo)
 - Portfolio: [navon2apo.github.io/portfolio](https://navon2apo.github.io/portfolio/)
 - Email: navon2amos@gmail.com
+
+הערה חשובה לפני שאתה שולח לו:
